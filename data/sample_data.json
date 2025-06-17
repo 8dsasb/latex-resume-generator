@@ -1,5 +1,62 @@
 {
-  "name": "Shasanka Acharya",
-  "email": "notmyrealemaillol@gmail.com",
-  "phone": "+61 0000 000 000"
+  "name": "Doc Courier Six",
+  "email": "courier6@mojaveexpress.net",
+  "phone": "+228 777-VAULT",
+  "linkedin": "doc-courier-six-2281",
+  "github": "courier-vatsmaster",
+  "education": {
+    "degree": "Bunker Science & Pre-War Computing",
+    "institution": "New California Republic University",
+    "location": "Shady Sands, NCR",
+    "start_date": "Aug 2275",
+    "end_date": "May 2279",
+    "grade": "S.P.E.C.I.A.L. Honors (10/10 in Luck)"
+  },
+  "experience": [
+    {
+      "title": "Wasteland Courier",
+      "company": "Mojave Express",
+      "location": "Primm, Mojave Wasteland",
+      "start_date": "2279",
+      "end_date": "2281",
+      "responsibilities": [
+        "Delivered high-risk packages across Deathclaw territory with 100% success rate",
+        "Negotiated peace between NCR and Legion (or caused absolute chaos, depending on mood)",
+        "Upgraded Pip-Boy UX using Old World tech"
+      ]
+    },
+    {
+      "title": "Freelance Tech Scribe",
+      "company": "Followers of the Apocalypse",
+      "location": "Old Mormon Fort, Freeside",
+      "start_date": "2281",
+      "end_date": "Present",
+      "responsibilities": [
+        "Reverse-engineered ancient mainframes using Fusion Core-powered logic gates",
+        "Developed AI to detect rogue Securitrons before activation",
+        "Taught Python to tribals (who now call it 'the snake god')"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "title": "Pip-Boy OS Reboot",
+      "description": [
+        "Refactored original Vault-Tec interface into dark mode with terminal hacks",
+        "Added voice command support using old Sierra Madre radio chips"
+      ]
+    },
+    {
+      "title": "Autonomous Brahmin Herding Bot",
+      "description": [
+        "Built an AI-controlled herder using scrap, duct tape, and a lunchbox",
+        "Reduced human Brahmin wrangling injuries by 76%"
+      ]
+    }
+  ],
+  "skills": [
+    "Python", "VATS Optimization", "Power Armor Debugging", "Vault-Tec UI/UX", 
+    "Pip-Boy Scripting", "Laser Rifle Calibration", "Pre-War API Hacking", 
+    "NCR GitOps", "Mutant ML", "Stealth Boy Automation"
+  ]
 }

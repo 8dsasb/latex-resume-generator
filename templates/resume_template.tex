@@ -1,0 +1,61 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{titlesec}
+\usepackage{parskip}
+\usepackage{fontspec}
+
+% Font setup (if XeLaTeX is used)
+\setmainfont{Arial}
+
+% Section formatting
+\titleformat{\section}{\large\bfseries}{}{0em}{}
+
+\begin{document}
+
+\begin{center}
+    {\LARGE \textbf{ {{ name }} }} \\
+    {{ email }} \quad | \quad {{ phone }} \\
+    \href{https://linkedin.com/in/{{ linkedin }}}{LinkedIn} \quad | \quad \href{https://github.com/{{ github }}}{GitHub}
+\end{center}
+
+\vspace{0.5cm}
+
+\section*{Education}
+\textbf{ {{ education.degree }} } \\
+{{ education.institution }} \hfill {{ education.location }} \\
+{{ education.start_date }} -- {{ education.end_date }} \\
+Grade: {{ education.grade }}
+
+\vspace{0.3cm}
+
+\section*{Experience}
+{% for job in experience %}
+\textbf{ {{ job.title }} } \hfill {{ job.location }} \\
+{{ job.company }} \hfill {{ job.start_date }} -- {{ job.end_date }} \\
+\begin{itemize}[leftmargin=1.5em]
+    {% for bullet in job.responsibilities %}
+    \item {{ bullet }}
+    {% endfor %}
+\end{itemize}
+{% endfor %}
+
+\vspace{0.3cm}
+
+\section*{Projects}
+{% for project in projects %}
+\textbf{ {{ project.title }} } \\
+\begin{itemize}[leftmargin=1.5em]
+    {% for bullet in project.description %}
+    \item {{ bullet }}
+    {% endfor %}
+\end{itemize}
+{% endfor %}
+
+\vspace{0.3cm}
+
+\section*{Skills}
+{{ skills | join(", ") }}
+
+\end{document}

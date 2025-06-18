@@ -4,9 +4,10 @@ from jinja2 import Environment, FileSystemLoader
 import os
 
 # Setting up the paths
-TEMPLATE_DIR = "templates"
-OUTPUT_DIR = "output"
-DATA_PATH = "data/sample_data.json"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+TEMPLATE_DIR = os.path.join(BASE_DIR, "templates")
+OUTPUT_DIR = os.path.join(BASE_DIR, "output")
+DATA_PATH = os.path.join(BASE_DIR, "data", "sample_data.json")
 OUTPUT_TEX = os.path.join(OUTPUT_DIR, "resume.tex")
 OUTPUT_PDF = os.path.join(OUTPUT_DIR, "resume.pdf")
 
@@ -29,6 +30,7 @@ with open(OUTPUT_TEX, "w", encoding = "utf-8") as f:
     f.write(rendered_tex)
 
 # Compiling LaTeX to PDF using pdflatex
-subprocess.run(["pdflatex", "-output-directory", OUTPUT_DIR, OUTPUT_TEX])
+# subprocess.run(["pdflatex", "-output-directory", OUTPUT_DIR, OUTPUT_TEX])
+subprocess.run(["xelatex", "-output-directory", OUTPUT_DIR, OUTPUT_TEX])
 
 print(f"Resume generated at {OUTPUT_PDF}")

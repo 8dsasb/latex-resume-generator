@@ -5,57 +5,85 @@
 \usepackage{titlesec}
 \usepackage{parskip}
 \usepackage{fontspec}
+\usepackage{etoolbox}
 
-% Font setup (if XeLaTeX is used)
-\setmainfont{Arial}
+% ===============================
+% Font Setup
+% ===============================
+\setmainfont{Spartan} % Body text font
 
-% Section formatting
-\titleformat{\section}{\large\bfseries}{}{0em}{}
+\newfontfamily\namefont{Noto Serif Kannada} % Name font
+\newfontfamily\sectionfont{Noto Serif}      % Section heading font
 
+% ===============================
+% Section Heading Formatting
+% ===============================
+\titleformat{\section}
+  {\sectionfont\bfseries\fontsize{11pt}{13pt}}{}{0pt}{}
+\titlespacing{\section}{0pt}{12pt}{4pt}
+\preto\section{\vspace{6pt}\noindent\rule{\linewidth}{0.4pt}\par\vspace{4pt}}
+
+% ===============================
+% List Formatting
+% ===============================
+\setlist[itemize]{topsep=2pt, partopsep=0pt, itemsep=3pt, parsep=0pt, left=1.5em}
+
+% ===============================
+% Document Starts
+% ===============================
 \begin{document}
+\fontsize{8pt}{10pt}\selectfont
 
+% Name Header
 \begin{center}
-    {\LARGE \textbf{ {{ name }} }} \\
-    {{ email }} \quad | \quad {{ phone }} \\
-    \href{https://linkedin.com/in/{{ linkedin }}}{LinkedIn} \quad | \quad \href{https://github.com/{{ github }}}{GitHub}
+  {\namefont\bfseries\fontsize{18pt}{22pt}\selectfont {{ name }} } \\
+  {{ email }} \quad | \quad {{ phone }} \\
+  \href{https://linkedin.com/in/{{ linkedin }}}{LinkedIn} \quad | \quad \href{https://github.com/{{ github }}}{GitHub}
 \end{center}
 
 \vspace{0.5cm}
+\rule{\linewidth}{0.4pt}
 
+% ===============================
+% Education
+% ===============================
 \section*{Education}
-\textbf{ {{ education.degree }} } \\
-{{ education.institution }} \hfill {{ education.location }} \\
+\textbf{ {{ education.degree | replace("&", "\\&") }} } \hfill {{ education.location }} \\
+{{ education.institution }} \\
 {{ education.start_date }} -- {{ education.end_date }} \\
 Grade: {{ education.grade }}
 
-\vspace{0.3cm}
-
+% ===============================
+% Experience
+% ===============================
 \section*{Experience}
 {% for job in experience %}
 \textbf{ {{ job.title }} } \hfill {{ job.location }} \\
 {{ job.company }} \hfill {{ job.start_date }} -- {{ job.end_date }} \\
-\begin{itemize}[leftmargin=1.5em]
+\begin{itemize}
     {% for bullet in job.responsibilities %}
     \item {{ bullet }}
     {% endfor %}
 \end{itemize}
 {% endfor %}
 
-\vspace{0.3cm}
-
+% ===============================
+% Projects
+% ===============================
 \section*{Projects}
 {% for project in projects %}
 \textbf{ {{ project.title }} } \\
-\begin{itemize}[leftmargin=1.5em]
+\begin{itemize}
     {% for bullet in project.description %}
     \item {{ bullet }}
     {% endfor %}
 \end{itemize}
 {% endfor %}
 
-\vspace{0.3cm}
-
-\section*{Skills}
+% ===============================
+% Skills
+% ===============================
+\section*{Technical Skills}
 {{ skills | join(", ") }}
 
 \end{document}

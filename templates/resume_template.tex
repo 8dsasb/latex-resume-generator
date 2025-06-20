@@ -1,5 +1,5 @@
 \documentclass[11pt]{article}
-\usepackage[margin=1in]{geometry}
+\usepackage[top = 0.1in, bottom = 0.6in, left = 1in, right = 1in]{geometry}
 \usepackage{enumitem}
 \usepackage{hyperref}
 \usepackage{titlesec}
@@ -10,7 +10,6 @@
 % ===============================
 % Font Setup
 % ===============================
-
 \setmainfont{LeagueSpartan-VariableFont_wght}[Path=./fonts/, Extension=.ttf] % Body text font
 
 \newfontfamily\namefont{NotoSerifKannada-VariableFont_wght}[Path=./fonts/, Extension=.ttf] % Name font
@@ -21,70 +20,68 @@
 % ===============================
 \titleformat{\section}
   {\sectionfont\bfseries\fontsize{11pt}{13pt}}{}{0pt}{}
-\titlespacing{\section}{0pt}{12pt}{4pt}
-\preto\section{\vspace{6pt}\noindent\rule{\linewidth}{0.4pt}\par\vspace{4pt}}
+\titlespacing{\section}{0pt}{12pt}{6pt}
+\preto\section{\vspace{0.5em}\noindent\rule{\linewidth}{0.2pt}\par\vspace{0.8em}}
 
 % ===============================
 % List Formatting
 % ===============================
-\setlist[itemize]{topsep=2pt, partopsep=0pt, itemsep=3pt, parsep=0pt, left=1.5em}
+\setlist[itemize]{topsep=2pt, partopsep=0pt, itemsep=2pt, parsep=0pt, left=1.5em}
 
 % ===============================
-% Document Starts
+% Begin Document
 % ===============================
 \begin{document}
 \fontsize{8pt}{10pt}\selectfont
 
-% Name Header
+% ============ HEADER ============
 \begin{center}
-  {\namefont\bfseries\fontsize{18pt}{22pt}\selectfont {{ name }} } \\
-  {{ email }} \quad | \quad {{ phone }} \\
-  \href{https://linkedin.com/in/{{ linkedin }}}{LinkedIn} \quad | \quad \href{https://github.com/{{ github }}}{GitHub}
+  {\namefont\bfseries\fontsize{18pt}{20pt}\selectfont {{ name }} }\\[-2pt]
+  {{ location }}~•~{{ phone }}~•~\href{mailto:{{ email }}}{{ email }} \\[-2pt]
+  \href{https://linkedin.com/in/{{ linkedin }}}{LinkedIn}~•~\href{https://github.com/{{ github }}}{GitHub}
 \end{center}
 
-\vspace{0.5cm}
+\vspace{0.4cm}
 \rule{\linewidth}{0.4pt}
 
-% ===============================
-% Education
-% ===============================
+% ============ TECHNICAL SKILLS ============
+\section*{Technical Skills}
+{{ skills | join(", ") }}
+
+% ============ PROFESSIONAL EXPERIENCE ============
+\section*{Professional Experience}
+{% for job in experience %}
+\textbf{ {{ job.title }} } \hfill {{ job.location }} \\
+\textbf{ {{ job.company }} } \hfill {{ job.start_date }} -- {{ job.end_date }} \\
+\begin{itemize}
+  {% for bullet in job.responsibilities %}
+  \item {{ bullet }}
+  {% endfor %}
+\end{itemize}
+{% endfor %}
+
+% ============ PROJECTS ============
+\section*{Projects}
+{% for project in projects %}
+\textbf{ {{ project.title }} } \hfill {{ project.date }} \\
+\begin{itemize}
+  {% for bullet in project.description %}
+  \item {{ bullet }}
+  {% endfor %}
+\end{itemize}
+{% endfor %}
+
+% ============ EDUCATION ============
 \section*{Education}
 \textbf{ {{ education.degree | replace("&", "\\&") }} } \hfill {{ education.location }} \\
-{{ education.institution }} \\
+\textbf{ {{ education.institution }} } \\
 {{ education.start_date }} -- {{ education.end_date }} \\
 Grade: {{ education.grade }}
 
-% ===============================
-% Experience
-% ===============================
-\section*{Experience}
-{% for job in experience %}
-\textbf{ {{ job.title }} } \hfill {{ job.location }} \\
-{{ job.company }} \hfill {{ job.start_date }} -- {{ job.end_date }} \\
-\begin{itemize}
-    {% for bullet in job.responsibilities %}
-    \item {{ bullet }}
-    {% endfor %}
-\end{itemize}
+% ============ OTHER INITIATIVES ============
+\section*{Other Initiatives}
+{% for initiative in other %}
+\textbf{ {{ initiative.title }}: } {{ initiative.description }} \\
 {% endfor %}
-
-% ===============================
-% Projects
-% ===============================
-\section*{Projects}
-{% for project in projects %}
-\textbf{ {{ project.title }} } \\
-\begin{itemize}
-    {% for bullet in project.description %}
-    \item {{ bullet }}
-    {% endfor %}
-\end{itemize}
-{% endfor %}
-
-% ===============================
-% Skills
-% ===============================
-\section*{Technical Skills}
-{{ skills | join(", ") }}
 
 \end{document}
